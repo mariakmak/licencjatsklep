@@ -1,0 +1,44 @@
+{% extends 'menu.html' %}
+
+
+
+{% block content %}
+<div class="collumn2">
+<h1 style="padding: 10px;">{{user.first_name}}
+    {{user.last_name}}</h1>
+
+<h4 style="padding: 20px;">Obserwowane produkty <span class="badge badge-light" style="background-color:#a97cfc" style="color:000000">{{produkty.count}}</span>:</h4>
+    <div class="list">
+    {% for obiekt in produkty %}
+    <div class="card" style="width: 18rem;" >
+        <a class="konto" style="text-decoration:none" href="/produkt/{{ obiekt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.zdjecie.url }}" alt="Card image cap">
+        <p >{{ obiekt.nazwa }} </p>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+<h4 style="padding: 20px;">Obserwowane oferty <span class="badge badge-light" style="background-color:#a97cfc">{{oferty.count}}</span>:</h4>
+    <div class="list">
+    {% for obiekt in oferty %}
+    <div class="card" style="width: 18rem;" >
+        <a class="konto" style="text-decoration:none" href="/produkt/{{ obiekt.produkt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.produkt.zdjecie.url }}" alt="Card image cap">
+        <p > {{ obiekt.produkt.nazwa }} </br> Sklep: {{ obiekt.sklep.nazwa }}  </p>
+
+        {% if obiekt.promocyjna_cena == none %}
+
+                <p> cena: {{ obiekt.cena}}</p>
+
+        {% else %}
+
+                <p> stara cena: {{ obiekt.cena}}</p>
+                <h4 style="color:#fa862d"> promocja: {{ obiekt.promocyjna_cena}}</h4>
+        {% endif %}
+          </a>
+        </div>
+    {% endfor %}
+        </div>
+</div>
+{% endblock content %}
+

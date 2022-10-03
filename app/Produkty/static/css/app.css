@@ -1,0 +1,237 @@
+body{
+background: #ebfcfc;
+}
+
+#container {
+max-width: 1000px;
+min-height: 100vh;
+margin: 0 auto;
+background-color: #f7fcfc;
+color: #a97cfc;
+
+}
+
+#content {
+display: grid;
+grid-template-columns: 1fr 3fr;
+grid-template-rows: 2fr 0,5fr auto 0,5fr;
+gap: 10px;
+text-align:center;
+}
+
+
+#logo {
+    text-align: center;
+    font-size: 100px;
+    padding-top: 3%;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    color:#750238;
+}
+
+nav {
+      grid-column: 1 / 3;
+      grid-row: 2;
+}
+
+.menu {
+margin:0px;
+padding:10px;
+box-sizing: content-box;
+}
+
+
+
+
+
+p.menu a:hover {
+text-decoration:none;
+color:#fc8460;
+
+
+}
+
+p.menu:hover {
+
+background-color:#ebe1fa;
+text-decoration:none;
+color:#fc8460;
+
+}
+
+
+
+
+
+.collumn1 {
+
+      grid-column: 1;
+      grid-row: 3;
+      margin: 40px;
+
+}
+
+.collumn2 {
+
+      grid-column: 2;
+      grid-row: 3;
+      margin: 10px;
+
+}
+
+
+footer{
+      grid-column: 1 / 3;
+      grid-row: 4;
+      padding: 20px;
+}
+
+
+.kontakt {
+margin: 1px;
+padding: 0px;
+font-size: 10px;
+}
+
+
+.list {
+display: flex;
+flex-direction: row;
+justify-content: space-evenly;
+flex-wrap: wrap;
+
+
+}
+
+
+.title{
+color:#c604d4;
+text-decoration: none;}
+
+.title:hover{
+color:#fc5a03;
+text-decoration: none;}
+
+p.nav-item a:hover{
+color:#e31102;
+text-decoration: none;
+}
+
+p.nav-item a{
+color:#b4cc00;
+text-decoration: none;
+}
+
+
+.navbar{padding:0px;}
+
+.konto:hover{
+color:#fc5a03;
+text-decoration:none;
+}
+
+span.badge badge-light{
+color:white;
+}
+
+
+.logowanie{
+min-height: 100vh;
+grid-column: 1 / 3;
+grid-row: 1 / 5;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*box-sizing: border-box;
+  z-index: -1; */
+/*}
+
+
+
+
+/*#topbar {
+
+  background-color: red;
+  font-size: 70px;
+} */
+
+/*#sidebar {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #fefbd8;
+}
+
+#content {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #fefbd8;
+}
+
+
+#footer {
+  max-width: 1000px;
+  margin: auto;
+  background-color: #fefbd8;
+}
+
+.things {
+
+}
+
+.logo{
+text-align: center;
+padding: 5%;
+margin: 0px;
+border: 0px;
+
+}
+
+
+
+.thing{
+
+}
+
+
+.content {
+clear:both;
+background-color:red;
+}
+
+
+.a{float:left;}
+
+a:link{}
+a:visited{}
+a:hover{}

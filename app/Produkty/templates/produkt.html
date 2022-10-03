@@ -1,0 +1,121 @@
+{% extends 'menu.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{produkt_user.id}}</title>
+</head>
+<body>
+
+{% block content %}
+<div class="collumn2">
+
+
+{% if produkt_user %}
+
+
+<div class="card" style="margin: 40px;"  >
+    <img class="card-img-top" src="{{ produkt_user.zdjecie.url }}" alt="Card image cap">
+<h1>{{ produkt_user.nazwa }}</h1>
+<p>producent: {{ produkt_user.producent }}</p>
+
+
+
+{% if user.is_authenticated %}
+{% if produkt_konto %}
+
+<form action="{% url 'usun' produkt_user.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-primary" style="margin: 10px;"  type="submit", name="produktid", value="{{ produkt_user.id }}"  >Przestań obserwować</button>
+</form>
+
+
+{% else %}
+<form action="{% url 'zapisz' produkt_user.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-danger" style="margin: 10px;" type="submit", name="produktid", value="{{ produkt_user.id }}"  >Obserwuj</button>
+</form>
+{% endif %}
+{% endif %}
+
+</div>
+
+
+
+
+
+
+
+<h3>Oferty:</h3>
+
+{% if oferty_konto %}
+
+
+<div style="margin-bottom:40px">
+<form action="{% url 'usun_oferty_all' produkt_user.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-success" style="margin: 10px;" type="submit", name="produktid", value="{{ produkt_user.id }}"  >Usuń obserwowane oferty</button>
+</form>
+</div>
+
+{% endif %}
+
+<div class="list">
+{% for oferta in oferty  %}
+
+    <div class="card" style="width: 18rem;"  style="box-sizing:content-box;" style="margin:10px;" >
+<p> {{ oferta.produkt}}</p>
+<h5> sklep: {{ oferta.sklep}}</h5>
+
+{% if oferta.promocyjna_cena == none %}
+
+<p> cena: {{ oferta.cena}}</p>
+
+{% else %}
+
+<p> stara cena: {{ oferta.cena}}</p>
+<h4 style="color:#fa862d"> promocja: {{ oferta.promocyjna_cena}}</h4>
+{% endif %}
+
+
+
+
+
+{% if user.is_authenticated %}
+{% if not produkt_konto %}
+{% if oferta in oferty_konto %}
+<form action="{% url 'usun_oferta' produkt_user.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-primary" style="margin: 10px;" type="submit", name="produktid", value="{{ oferta.id }}"  >Przestań obserwować</button>
+</form>
+
+
+{% else %}
+<form action="{% url 'zapisz_oferta' produkt_user.pk %}" method="POST">
+    {% csrf_token %}
+    <button class="btn btn-outline-info" style="margin: 10px;" type="submit", name="produktid", value="{{ oferta.id }}"  >Obserwuj</button>
+</form>
+{% endif %}
+{% endif %}
+{% endif %}
+</div>
+
+{% endfor %}
+
+</div>
+
+
+{% else %}
+    <div class="card" style="margin: 40px;"  >
+<p>Produkt nie jest dostępny na naszej stronie :(((((</p>
+{% endif %}
+    </div>
+</div>
+{% endblock content %}
+
+<!-- {% for prod in produkty %}
+<p><a href = "produkt/{{prod.id}}">{{ prod.nazwa }}</a></p>
+{% endfor %}
+-->
+</body>
+</html>

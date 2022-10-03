@@ -1,0 +1,57 @@
+{% extends 'menu.html' %}
+{% block content %}
+<!--<h1> {{ search }}</h1> -->
+<div class="collumn2">
+{% if form %}
+{% if nazwy or producenci or categories or sklepy %}
+    {% for obiekt in nazwy %}
+    <div class="card" style="margin: 40px;"  >
+        <a href="/produkt/{{ obiekt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.zdjecie.url }}" alt="Card image cap">
+        <p>{{ obiekt.nazwa }}</p>
+         </a>
+        </div>
+    {% endfor %}
+
+    {% for obiekt in producenci %}
+    <div class="card" style="margin: 40px;"  >
+        <a href="/produkt/{{ obiekt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.zdjecie.url }}" alt="Card image cap">
+        <p>{{ obiekt.nazwa }}  </p></a>
+        <p >Producent: {{ obiekt.producent.nazwa }} </p>
+
+        </div>
+    {% endfor %}
+
+
+    {% for obiekt in categories %}
+    <div class="card" style="margin: 40px;"  >
+        <a href="/produkt/{{ obiekt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.zdjecie.url }}" alt="Card image cap">
+        <p>{{ obiekt.nazwa }}</p>   </a>
+        <p>Kategoria: {{ obiekt.kategoria.nazwa }} </p>
+        </div>
+    {% endfor %}
+
+    {% for obiekt in sklepy %}
+    <div class="card" style="margin: 40px;"  >
+        <a href="/produkt/{{ obiekt.produkt.id }}/">
+        <img class="card-img-top" src="{{ obiekt.produkt.zdjecie.url }}" alt="Card image cap">
+        <p>{{ obiekt.produkt.nazwa }}</p> </a>
+        <p>Sklep: {{ obiekt.sklep.nazwa }} </p>
+        </div>
+    {% endfor %}
+
+{% else %}
+    <div class="card" style="padding: 40px;"  >
+<h1>Przepraszamy. Nie mamy tego, czego szukasz :((</h1>
+        </div>
+{% endif %}
+
+{% else %}
+<h1>Nie wpisałeś nic w polu wyszukiwarki. Aby wyszukać, wpisz interesującą Cie frazę.</h1>
+{% endif %}
+
+</div>
+
+{% endblock content %}

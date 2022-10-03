@@ -1,0 +1,33 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+
+<div class="collumn2">
+    <div class="list">
+
+{% for obiekt in powiadomienia_stare %}
+  <div class="card" style="width: 18rem;">
+     <a class="konto" href = "/produkt/{{obiekt.oferta.produkt.id}}">
+        <img class="card-img-top" src="{{ obiekt.oferta.produkt.zdjecie.url }}" alt="Card image cap">
+<h2 style="color:#c604d4">{{ obiekt.oferta.produkt }}</h2>
+<p> {{ obiekt.oferta.sklep }} </p>
+<p> stara cena:{{ obiekt.oferta.cena }} </p>
+<h3 style="color:red"> nowa cena:{{ obiekt.oferta.promocyjna_cena }} </h3>
+<p> {{ obiekt.treść }} </p>
+<p> {{ obiekt.data }} </p>
+ </a>
+</div>
+{% endfor %}
+</div>
+{% if not powiadomienia_stare %}
+    <div class="card" style="padding: 40px;">
+<h2>Nie mamy dla Ciebie żadnych aktualnych promocji :((</h2>
+        </div>
+{% endif %}
+
+</div>
+
+
+
+
+{% endblock content %}

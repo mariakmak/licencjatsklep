@@ -1,0 +1,110 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block menu %}
+
+    <h1 id = "logo"> ZAKUP<a style="text-decoration:none" href="/"><img  src="/images/icon/logolicencjat.png" height="150" width="115" style="padding:0px" style="margin:0px"   alt="o"></a>WY RAJ  </h1>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3fffe"   >
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+
+
+
+    <div class="navbar-nav mr-auto" style="padding-left:20px"  >
+    <form class="form-inline " action="{% url 'szukaj' %}" method="GET">
+
+        {{ search }}
+
+    </form>
+    </div>
+
+
+
+
+    {% if user.is_authenticated %}
+        <p class="menu" style="padding:0px" > <a class="nav-item nav-link" style="padding:20px" href = "/profil/{{user.id}}"> <img  src="/images/icon/konto.png" height="30" width="25" style="padding:0px" style="margin:0px"   alt="twój profil"> </a></p>
+        <p class="menu" style="padding:0px" > <a class="nav-item nav-link" style="padding:20px" href = "/promocje/{{user.id}}"> <img  src="/images/icon/promocja.png" height="30" width="25" style="padding:0px" style="margin:0px"   alt="promocje"> <span class="badge badge-light">{{promo.count}}</span> </a></p>
+        <p class="menu" style="padding:0px" > <a class="nav-item nav-link" style="padding:20px"   href = "/powiadomienia/{{user.id}}"> <img  src="/images/icon/dzwoneczek.png" height="30" width="25" style="padding:0px" style="margin:0px"   alt="powiadomienia"> <span class="badge badge-light">{{powiadomienia.count}}</span> </a></p>
+        <p class="menu" style="padding:0px" > <a class="nav-item nav-link" style="padding:20px"  href = "/wyloguj"> <img  src="/images/icon/wyloguj.png" height="30" width="25" style="padding:0px" style="margin:0px"   alt="wyloguj"> </a></p>
+
+
+    {% else %}
+        <p class="menu" style="padding:0px" > <a class="nav-link" style="padding:20px" href = "/logowanie"> zaloguj</a> </p>
+        <p class="menu" style="padding:0px" >  <a class="nav-link" style="padding:20px" href = "/rejestracja">zarejestruj się</a></p>
+    {% endif %}
+
+
+
+
+
+      </div>
+
+</nav>
+
+
+
+    <div class="collumn1">
+
+      <div class="col-sm">
+    <h3>Menu</h3>
+      <a style="text-decoration:none" href = "/"><p class="menu" >Strona główna</p></a>
+    {% for kat in kategorie %}
+     <a style="text-decoration:none" href = "/kategoria/{{kat.id}}"><p class="menu">{{ kat.nazwa }}</p></a>
+    {% endfor %}
+
+      </div>
+
+    </div>
+
+
+{% endblock menu %}
+
+
+
+    {% block content %}{% endblock content %}
+
+
+
+
+{% block footer %}
+<footer>
+<div class="nav nav-pills nav-fill" >
+
+<p class="nav-item" > <a   href = "/"> Strona główna </a></p>
+    {% if user.is_authenticated %}
+        <p class="nav-item"  > <a  href = "/profil/{{user.id}}"> twój profil </a></p>
+        <p class="nav-item" > <a   href = "/wyloguj"> wyloguj </a></p>
+    {% else %}
+        <p class="nav-item" > <a href = "/logowanie"> zaloguj </a></p>
+        <p class="nav-item" >  <a href = "/rejestracja">zarejestruj się</a></p>
+    {% endif %}
+    <div class="nav-item">
+        <div class="btn-group" >
+<button type="button" class="btn btn-secondary dropdown-toggle" style="color:#b4cc00" style="background-color:transparent" style="border:0px"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Kontakt:</button>
+<div class="dropdown-menu">
+<p class = "dropdown-item" > numer kontaktowy: 999-999-999</p></br>
+<p class = "dropdown-item" > e-mail: fajne_zakupy@gmail.com</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+{% endblock footer %}
+
+

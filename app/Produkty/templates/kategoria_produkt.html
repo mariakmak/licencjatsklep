@@ -1,0 +1,31 @@
+{% extends 'menu.html' %}
+
+
+{% block content %}
+
+<div class="collumn2">
+  <div class="list">
+
+{% if kategoria_produkt %}
+
+
+
+  {% for produkt in kategoria_produkt %}
+
+  <div class="card" style="width: 18rem;">
+    <a class="title" href="/produkt/{{ produkt.id }}/">
+    <img class="card-img-top" src="{{ produkt.zdjecie.url }}" alt="Card image cap">
+    <h5 >  {{produkt.nazwa}} </h5>
+    </a>
+  </div>
+
+  {% endfor %}
+
+{% else %}
+
+{% endif %}
+
+</div>
+</div>
+
+{% endblock content %}

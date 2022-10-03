@@ -1,0 +1,28 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+<div class="collumn2">
+<div class="list">
+{% for obiekt in powiadomienia_stare %}
+
+            <div class="card" style="width: 18rem;" style="box-sizing:content-box;" style="margin:10px;" >
+
+        <img class="card-img-top" src="{{ obiekt.zdjecie.url }}" alt="Card image cap">
+
+<p> {{ obiekt.treść }} </p>
+<p> {{ obiekt.data }} </p>
+ </div>
+
+{% endfor %}
+</div>
+{% if not powiadomienia_stare %}
+    <div class="card" style="padding: 40px;">
+<h2>Nie masz żadnych  powiadomień.</h2>
+        </div>
+{% endif %}
+
+
+</div>
+
+
+{% endblock content %}

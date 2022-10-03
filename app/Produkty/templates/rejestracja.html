@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<fieldset class="logowanie">
+<div class="shadow-sm p-3 mb-5 bg-white rounded" style="margin:5% 20% 3rem 20%">
+    <h1>Rejestracja:</h1>
+
+    <form method="POST" >
+        <div class="form-group">
+        {% csrf_token %}
+    <!--<div style="text-align:left";>{{ register }}</div> -->
+
+        <div>
+
+        {% for field in register %}
+             <p>{{ field.label_tag}} {{ field}}
+
+             {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+            {% endif %}
+
+
+             {% for error in field.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+
+        {% endfor %}
+
+
+
+             </p>
+        </div>
+
+        <input class="btn btn-outline-secondary" type="submit" value="Zarejestruj"/>
+        </div>
+  </form>
+
+
+
+    {% for message in messages %}
+     <p>{{ message }}</p>
+    {% endfor %}
+
+</div>
+<p>Masz już konto? Zaloguj się <a href = "/logowanie">tutaj</a>! </p>
+    </fieldset>
+{% endblock content %}
